@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Automação de Horas</title>
+</head>
+<body>
+	<h1>Automação de Horas</h1>
+	<p>Clique no botão abaixo para marcar a hora:</p>
+	<button onclick="marcarHora()">Marcar Hora</button>
+
+	<script>
+		function marcarHora() {
+			var agora = new Date();
+			var hora = agora.getHours();
+			var minutos = agora.getMinutes();
+			var segundos = agora.getSeconds();
+			var mensagem = "";
+
+			if (hora >= 7 && hora < 10) {
+				mensagem = "Cheguei ao trabalho às " + hora + ":" + minutos + ":" + segundos;
+			} else if (hora >= 11 && hora < 13) {
+				mensagem = "Almoço às " + hora + ":" + minutos + ":" + segundos;
+			} else if (hora >= 13 && hora <= 15 && minutos <= 59 && segundos <= 59) {
+				mensagem = "Voltando do almoço às " + hora + ":" + minutos + ":" + segundos;
+			} else if (hora >= 16 && hora <= 23 && minutos <= 59 && segundos <= 59) {
+				mensagem = "Saindo do trabalho às " + hora + ":" + minutos + ":" + segundos;
+			} else if (hora === 0 && minutos <= 59 && segundos <= 59) {
+				mensagem = "Saindo do trabalho às " + (hora + 24) + ":" + minutos + ":" + segundos;
+			} else {
+				mensagem = "Hora marcada às " + hora + ":" + minutos + ":" + segundos;
+			}
+
+			// concatenando a mensagem com o link do WhatsApp e a mensagem pré-preenchida
+			var link = "https://wa.me/5564993020812?text=" + encodeURIComponent(mensagem);
+
+			// redirecionando para o link do WhatsApp
+			window.location.href = link;
+		}
+	</script>
+</body>
+</html>
